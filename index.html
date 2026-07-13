@@ -1,36 +1,282 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Govindangovi | Personal Website</title>
+    <title>Govindangovi | Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0078d4;
+            --dark: #1a1a1a;
+            --light: #f4f4f4;
+            --gray: #666;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+            scroll-behavior: smooth;
+        }
+
+        /* Layout Containers */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-content {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .card {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 500px;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');
+            background-size: cover;
         }
-        h1 { color: #0078d4; margin-bottom: 10px; }
-        p { font-size: 1.1rem; line-height: 1.6; }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #005a9e;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .project-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .project-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        .project-card a {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 40px 0;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Hi, I'm Govindangovi</h1>
-        <p>Welcome to my official personal website. I am currently setting this up and will be adding my projects, skills, and experience here soon!</p>
-    </div>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">Govindangovi</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Hi, I'm Govindangovi</h1>
+            <p>Software Developer | Problem Solver | Tech Enthusiast</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>Hello! I am a passionate developer who loves building things for the web. I enjoy turning complex problems into simple, beautiful, and innovative designs. When I'm not coding, I'm usually exploring new technologies or learning about the latest in software engineering.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="background-color: #fafafa;">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <!-- ADD YOUR SKILLS HERE -->
+                <div class="skill-card">HTML/CSS</div>
+                <div class="skill-card">JavaScript</div>
+                <div class="skill-card">Python</div>
+                <div class="skill-card">Git & GitHub</div>
+                <div class="skill-card">SQL</div>
+                <div class="skill-card">React.js</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="project-grid">
+                <!-- PROJECT 1 -->
+                <div class="project-card">
+                    <h3>Project Name One</h3>
+                    <p>Brief description of what this project does and the technology you used to build it (e.g., "A weather app built with React").</p>
+                    <a href="#">View Project →</a>
+                </div>
+
+                <!-- PROJECT 2 -->
+                <div class="project-card">
+                    <h3>Project Name Two</h3>
+                    <p>Brief description of what this project does and the technology you used to build it (e.g., "A personal blog system using Python and Flask").</p>
+                    <a href="#">View Project →</a>
+                </div>
+
+                <!-- PROJECT 3 -->
+                <div class="project-card">
+                    <h3>Project Name Three</h3>
+                    <p>Brief description of what this project does and the technology you used to build it.</p>
+                    <a href="#">View Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background-color: #fafafa;">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <p>Have a project in mind? Let's talk!</p>
+                <p style="margin-top: 20px;">
+                    Email: <a href="mailto:yourname@email.com">yourname@email.com</a> | 
+                    LinkedIn: <a href="YOUR_LINKEDIN_URL">LinkedIn</a> | 
+                    GitHub: <a href="https://github.com/Govindangovi">GitHub</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Govindangovi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
