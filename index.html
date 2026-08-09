@@ -186,6 +186,13 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+        .gallery-item {
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
 
         /* Contact Section */
         .contact-info {
@@ -318,30 +325,19 @@
     </section>
 
     <!-- ============================================================
-         VKG-AI CALC GALLERY
-         HOW TO ADD YOUR OWN IMAGES:
-         1. Upload image files to the "images" folder in this repo.
-         2. Copy-paste an <img> line below and change the filename.
-         All sections marked GALLERY SLOT are yours to edit.
+         VKG-AI CALC GALLERY  (auto-populated)
+         ADMIN: to add an image, just drag & drop the file into the
+         "images" folder in this repo (Add file -> Upload files ->
+         drag your image). It appears here automatically.
+         No HTML editing needed. Images keep their original filename.
          ============================================================ -->
     <section id="gal" style="background-color: #fafafa;">
         <div class="container">
             <div class="container" style="padding:0;">
                 <h2>VKG-AI Calc</h2>
+                <p id="gal-status" style="text-align:center; color:var(--gray);"></p>
             </div>
-            <div class="gallery-grid">
-
-                <!-- GALLERY SLOT 1: change 'images/vkg-screen1.jpg' to your upload.
-                <img src="images/vkg-screen1.jpg" alt="Screen shot 1" class="gallery-img">
-                -->
-
-                <!-- GALLERY SLOT 2: change 'images/vkg-shot2.jpg' to your upload. -->
-                <img src="images/vkg-shot2.jpg" alt="Screen shot 2" class="gallery-img">
-
-                <!-- GALLERY SLOT 3: add a new <img> line for a new image -->
-                <img src="images/vkg-banner.png" alt="VKG-AI Calc" class="gallery-img">
-
-            </div>
+            <div class="gallery-grid" id="gal-grid"></div>
         </div>
     </section>
 
@@ -365,6 +361,40 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+        (function() {
+            var grid = document.getElementById('gal-grid');
+            var status = document.getElementById('gal-status');
+            if (!grid) return;
+            var OWNER = 'Govindangovi';
+            var REPO = 'Govindangovi.github.io';
+            var BRANCH = 'main';
+            fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/images?ref=' + BRANCH)
+                .then(function(r) { return r.json(); })
+                .then(function(files) {
+                    if (!Array.isArray(files)) throw new Error('Unreadable');
+                    var shots = files.filter(function(f) {
+                        return /\.(png|jpe?g|gif|webp|svg)$/i.test(f.name) && !f.name.match(/ic_launcher/i);
+                    });
+                    shots.forEach(function(f) {
+                        var a = document.createElement('a');
+                        a.href = f.download_url; a.target = '_blank'; a.rel = 'noopener';
+                        a.className = 'gallery-item';
+                        var img = document.createElement('img');
+                        img.src = f.download_url;
+                        img.alt = f.name;
+                        img.className = 'gallery-img';
+                        a.appendChild(img);
+                        grid.appendChild(a);
+                    });
+                    if (status) status.textContent = shots.length + ' photo(s)';
+                })
+                .catch(function() {
+                    if (status) status.textContent = 'Gallery could not load.';
+                });
+        })();
     </script>
 </body>
 </html>
