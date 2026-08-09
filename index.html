@@ -172,6 +172,21 @@
             background: #00a844;
         }
 
+        /* App Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            margin-top: 30px;
+        }
+        .gallery-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
         /* Contact Section */
         .contact-info {
             text-align: center;
@@ -207,6 +222,7 @@
                <a href="#skills">Research</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
+                <a href="#gal">App Gallery</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -297,6 +313,34 @@
                      <!--  <a href="#">View Project →</a>   -->
                 </div>
                 
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         VKG-AI CALC GALLERY
+         HOW TO ADD YOUR OWN IMAGES:
+         1. Upload image files to the "images" folder in this repo.
+         2. Copy-paste an <img> line below and change the filename.
+         All sections marked GALLERY SLOT are yours to edit.
+         ============================================================ -->
+    <section id="gal" style="background-color: #fafafa;">
+        <div class="container">
+            <div class="container" style="padding:0;">
+                <h2>VKG-AI Calc</h2>
+            </div>
+            <div class="gallery-grid">
+
+                <!-- GALLERY SLOT 1: change 'images/vkg-screen1.jpg' to your upload.
+                <img src="images/vkg-screen1.jpg" alt="Screen shot 1" class="gallery-img">
+                -->
+
+                <!-- GALLERY SLOT 2: change 'images/vkg-shot2.jpg' to your upload. -->
+                <img src="images/vkg-shot2.jpg" alt="Screen shot 2" class="gallery-img">
+
+                <!-- GALLERY SLOT 3: add a new <img> line for a new image -->
+                <img src="images/vkg-banner.png" alt="VKG-AI Calc" class="gallery-img">
+
             </div>
         </div>
     </section>
